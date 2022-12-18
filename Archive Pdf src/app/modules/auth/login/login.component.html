@@ -1,0 +1,39 @@
+<div class="login">
+  <form [formGroup]="form" >
+    <h1>Login</h1>
+    <div class="form-group">
+      <label for="username">Email</label>
+      <input
+        type="text"
+        formControlName="Email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['Email'].errors }"
+        placeholder="Enter Your Email"
+      />
+      <div *ngIf="submitted && f['Email'].errors" class="invalid-feedback">
+        <div *ngIf="f['Email'].errors['required']">Email is required</div>
+        <div *ngIf="f['Email'].errors['pattern']">
+          Please enter a valid email address
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Password">Password</label>
+      <input
+        type="password"
+        formControlName="Password"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['Password'].errors }"
+        placeholder="Enter Your Password"
+      />
+      <div *ngIf="submitted && f['Password'].errors" class="invalid-feedback">
+        <div *ngIf="f['Password'].errors['required']">Password is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success" type="submit" (click)="loginData()">
+        Login
+      </button>
+    </div>
+  </form>
+</div>

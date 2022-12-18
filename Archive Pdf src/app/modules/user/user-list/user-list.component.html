@@ -1,0 +1,94 @@
+<div class="list row">
+  <div class="col-md-10">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name"
+        [(ngModel)]="FirstName"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchName()"
+        >
+          Search
+        </button>
+        &nbsp; &nbsp;
+        <button class="btn btn-primary" routerLink="/User/adduser">Add User</button>
+        &nbsp; &nbsp;
+        <button class="btn btn-dark" routerLink="/home">Cancel</button>
+        &nbsp; &nbsp;
+        <button class="btn btn-success" (click)="ExportTOExcel()">
+          Export CSV
+        </button>
+        &nbsp; &nbsp;
+        <button class="btn btn-danger" (click)="ExportToPdf()">
+          Export PDF
+        </button>
+        &nbsp; &nbsp;
+        <button class="btn btn-warning" (click)="onadd()">Add Modal</button>
+      </div>
+    </div>
+  </div>
+  <table id="myTable" class="table" matSort (matSortChange)="sortData($event)">
+    <thead>
+      <tr>
+        <th>
+          <input
+            class="form-check-input"
+            id="thcheck"
+            type="checkbox"
+            (change)="checkAll($event)"
+          />
+        </th>
+        <th scope="col" mat-sort-header="FirstName">Name</th>
+        <th scope="col" mat-sort-header="LastName">Sur Name</th>
+        <th scope="col" mat-sort-header="Email">Email</th>
+        <th scope="col" mat-sort-header="ContactNumber">Contact</th>
+        <th scope="col" mat-sort-header="RoleId">Role</th>
+
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userPagination">
+        <td>
+          <input
+            class="form-check-input"
+            (change)="getData($event, user)"
+            type="checkbox"
+            name="usercheck"
+          />
+        </td>
+        <td>{{ user.FirstName }}</td>
+        <td>{{ user.LastName }}</td>
+        <td>{{ user.Email }}</td>
+        <td>{{ user.ContactNumber }}</td>
+        <td>{{ user.RoleId == '0' ? 'User' : 'Admin' }}</td>
+
+        <td>
+          <button
+            class="btn btn-primary"
+            routerLink="/User/useredit/{{ user.UserId }}"
+          >
+            Edit
+          </button>
+          &nbsp;
+          <button class="btn btn-danger" (click)="deleteData(user.UserId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-paginator
+    showFirstLastButtons="true"
+    [pageIndex]="0"
+    [pageSize]="20"
+    [length]="users?.length"
+    [pageSizeOptions]="[5, 20, 50, 100]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>

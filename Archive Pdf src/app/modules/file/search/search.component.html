@@ -1,0 +1,49 @@
+<div id="pdf">
+  <div id="first">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name"
+        [(ngModel)]="PdfName"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchPdf()"
+        >
+          Search
+        </button>
+        &nbsp; &nbsp;
+        <button class="btn btn-danger" routerLink="/home">Cancel</button>
+      </div>
+      &nbsp; &nbsp;
+    </div>
+    <div>
+      <table class="table-success">
+        <thead>
+          <tr>
+            <th scope="col">PDF File Names</th>
+          </tr>
+        </thead>
+        <div *ngFor="let file of files">
+          <td (click)="data(file.FileName)">{{ file.FileName }}</td>
+        </div>
+      </table>
+    </div>
+  </div>
+
+  <div id="second">
+    <ngx-extended-pdf-viewer
+      [src]="doc"
+      [useBrowserLocale]="true"
+      [textLayer]="true"
+      [showHandToolButton]="true"
+      [showPresentationModeButton]="true"
+      [(page)]="page"
+      [(pageLabel)]="pageLabel"
+      [showDownloadButton]="false"
+    ></ngx-extended-pdf-viewer>
+  </div>
+</div>

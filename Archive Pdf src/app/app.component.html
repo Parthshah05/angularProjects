@@ -1,0 +1,43 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-success">
+    <div class="navbar-header">
+      <a class="navbar-brand size" href="home">Archive PDF Solutions</a>
+    </div>
+    <div class="navbar-nav mr-auto">
+      <!--      <li class="nav-item">-->
+      <!--        <a routerLink="add" class="nav-link">Add Data</a>-->
+      <!--      </li>-->
+
+      <!-- <li class="nav-item navbar-right">
+        <a routerLink="login" class="nav-link" >Log Out</a>
+      </li> -->
+    </div>
+    <ul class="nav navbar-nav navbar-right" *ngIf="isloggein$">
+      <li>
+        <a class="navbar-brand" routerLink="File/ocrfile">Ocr</a>
+      </li>
+      <div class="v1"></div>
+      <li>
+        <a class="navbar-brand" routerLink="File/uploadfile">File Upload</a>
+      </li>
+      <div class="v1"></div>
+      <li>
+        <a class="navbar-brand" (click)="user()">User Management</a>
+      </li>
+      <li>
+        <a (click)="logout()" href="#" class="navbar-brand">
+          <span class="glyphicon glyphicon-log-in"></span>
+          LogOut
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<!-- <nav
+    class="navbar navbar-dark bg-success fixed-bottom justify-content-center"
+  >
+    <p>Ⓒ 2022 PDF Archive Solution. All Rights Reserved.</p>
+  </nav> -->

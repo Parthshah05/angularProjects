@@ -1,0 +1,20 @@
+td{
+    cursor: pointer;
+}
+
+#first {
+    float:left;
+    width: 33%;
+  
+   
+}
+table {
+    width: 170px;
+}
+
+#second {
+    float:left;
+    width: 67%;
+  
+   
+}

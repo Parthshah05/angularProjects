@@ -1,0 +1,58 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <button class="btn btn-success" (click)="performOcr()">Ocr</button>
+    </div>
+  </div>
+  <table class="table" matSort (matSortChange)="sortData($event)">
+    <thead>
+      <tr>
+        <th scope="col" mat-sort-header="FileName"></th>
+        <th scope="col" mat-sort-header="FileName">File Name</th>
+        <th scope="col" mat-sort-header="FileDescription">File Description</th>
+        <th scope="col">IsArchive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of filePagination">
+        <td *ngIf="!file.IsArchive">
+          <input
+            class="form-check-input"
+            (change)="getData($event, file)"
+            type="checkbox"
+            name="FileId"
+            value="{{ file.FileId }}"
+          />
+        </td>
+        <td *ngIf="file.IsArchive"></td>
+        <td>{{ file.FileName }}</td>
+        <td>
+          <input
+            type="text"
+            [disabled]="file.IsArchive"
+            [(ngModel)]="file.FileDescription"
+            class="form-control"
+          />
+        </td>
+        <td *ngIf="file.IsArchive">
+          <i
+            class="fa fa-asterisk"
+            style="color: green;"
+            aria-hidden="true"
+          ></i>
+        </td>
+        <td *ngIf="!file.IsArchive">
+          <i class="fa fa-asterisk" style="color: red;" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-paginator
+    showFirstLastButtons="true"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [length]="files?.length"
+    [pageSizeOptions]="[5, 10, 20, 100]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>

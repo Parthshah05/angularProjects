@@ -1,0 +1,11 @@
+.login{
+    position: absolute;
+
+    width: 450px;
+    height: 50%;
+
+    /* Center form on page horizontally & vertically */
+    top: 25%;
+    left: 30%;
+   
+}

@@ -1,0 +1,41 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <div ng-app="MyApp" ng-controller="AppCtrl" layout-margin layout-padding>
+        <input
+          class="ng-hide"
+          multiple
+          type="file"
+          (change)="selectFiles($event)"
+        />
+      </div>
+    </div>
+  </div>
+  <table class="table" matSort (matSortChange)="sortData($event)">
+    <thead>
+      <tr>
+        <th scope="col" mat-sort-header="FileName">Uploaded Files</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of filePagination">
+        <td>{{ file.FileName }}</td>
+        <td>
+          &nbsp;
+          <button class="btn btn-danger" (click)="deleteData(file.FileId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-paginator
+    showFirstLastButtons="true"
+    [pageIndex]="0"
+    [pageSize]="5"
+    [length]="files?.length"
+    [pageSizeOptions]="[5, 10, 20, 100]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>

@@ -1,0 +1,18 @@
+.navbar-brand{
+    cursor: pointer;
+}
+.size{
+    font-size: xx-large;
+}
+.v1 {
+    border-left: 3px solid rgb(224, 230, 224);
+    height: 30px;
+    width: 15px
+  }
+.fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: -9px;
+    left: 0;
+    z-index: 1030;
+}
